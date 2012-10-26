@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src='http://code.jquery.com/jquery-1.8.2.min.js'></script>
+		<script src="tag.js"></script>
+		<style>
+			#tagContainer
+			{
+				width: 30em;
+				background-color: #eef;
+				padding: 1em;
+			}
+			
+			#tagContainer:before,
+			#tagContainer:after {
+				content: " ";
+				display: table;
+			}
+			#tagContainer:after {
+				clear: both;
+			}
+			
+			/* Scroll bars */
+			::-webkit-scrollbar {
+				width: 1em;
+			}
+			 
+			::-webkit-scrollbar-track {
+				-webkit-box-shadow: inset 0 0 1em rgba(0,0,0,0.3); 
+			}
+			 
+			::-webkit-scrollbar-thumb {
+				background-color: rgba(0,0,0,0.5); 
+			}
+			
+			/* Input */
+			#tagContainer .tagInput
+			{
+				float: left;
+				width: 50%;
+				margin-right: 50%;
+			}
+			
+			/* Suggestions */
+			#tagContainer .tagSuggestionsContainer
+			{
+				max-height: 15em;
+				overflow: auto;
+				float: left;
+				width: 50%;
+			}
+			
+			#tagContainer .tagSuggestionsContainer div
+			{
+				padding: 0.5em;
+			}
+			
+			#tagContainer .tagSuggestionsContainer div:hover
+			{
+				background-color: #ff5;
+			}
+			
+			/* Attached Tags */
+			#tagContainer .attachedTagsContainer
+			{
+				max-height: 15em;
+				overflow: auto;
+				float: left;
+				width: 50%;
+			}
+			
+			#tagContainer .attachedTagsContainer div
+			{
+				padding: 0.5em;
+				background-color: #fee;
+			}
+			
+			#tagContainer .attachedTagsContainer div:hover
+			{
+				background-color: #f66;
+			}
+			
+			#tagContainer .attachedTagsContainer div button
+			{
+				float: right;
+			}
+			
+		</style>
+	</head>
+	<body>
+		
+		Hello <br/>
+		<div id="tagContainer"></div>
+		<script>
+			var names = [];
+			var ids   = [];
+			s = 'abcdefghijklmnopqrstuvwxyz';
+			for(var i=0; i<s.length; i++)
+				for(var j=0; j<s.length; j++)
+				{
+					names.push(s[i] + s[j]);
+					ids.push(i * 26 + j);
+				}
+			
+			var attached = [0, 2, 4, 6];
+			
+			$('#tagContainer').tagInput({nameData:names, idData:ids, 	
+				alreadyAttachedIndices: attached});
+		</script>
+	</body>
+</html>
